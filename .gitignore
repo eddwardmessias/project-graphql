@@ -1,0 +1,112 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+out/
+lib/
+
+# TypeScript incremental cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Test coverage and reports
+coverage/
+.nyc_output/
+coverage-final.json
+test-results.xml
+
+# Jest cache
+.jest/
+
+# Temporary and caches
+tmp/
+.cache/
+.parcel-cache/
+.eslintcache
+.tscache
+.turbo/
+
+# Environment variables
+.env
+.env.local
+.env.*
+.env.*.local
+secrets.env
+.secrets/
+
+# Docker
+docker-compose.override.yml
+.docker/
+docker/.env
+
+# Docker volumes / local data
+**/data/
+
+# Node native addons
+*.node
+
+# Prisma
+.prisma/
+prisma/dev.db
+prisma/.db
+node_modules/.prisma
+
+# Database
+*.sqlite
+*.db
+*.sql
+
+# Security / secrets
+*.pem
+*.key
+*.crt
+id_rsa
+id_rsa.pub
+
+# Queues / brokers local data
+rabbitmq/
+rabbitmq-data/
+redis-data/
+redis/
+
+# CI and config
+.circleci/
+.github/
+.gitlab/
+
+# Package manager caches
+.npm/
+.yarn/
+.pnpm-store/
+
+# Misc
+.next/
+.vercel/
+docs/
+*.sublime-workspace
+*.sublime-project
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ignore internal notes
+z-*.md
+z-*.csv
+z-*.json
+
+#
+*.http
