@@ -4,8 +4,8 @@ import { db } from '../database';
 import { users } from '../database/schemas/users';
 import { ClientError } from '../shared/errors/app-error';
 import { signJwt } from '../shared/utils/jwt';
-import { hashPassword } from '../shared/utils/hash';
-import type { RegisterInput } from '../dtos/input/auth.input';
+import { comparePassword, hashPassword } from '../shared/utils/hash';
+import type { LoginInput, RegisterInput } from '../dtos/input/auth.input';
 
 export type AuthUser = {
   id: string;
@@ -17,6 +17,28 @@ export type AuthUser = {
 };
 
 export class AuthService {
+
+  async login(data: LoginInput){
+    const existingUser = db
+      .select()
+      .from(users)
+      .where(eq(users.email,data.email))
+      .get();
+
+    if (!existingUser) {
+      throw new ClientError('Invalid email or password.', 401);
+    }
+
+    const compare = await comparePassword(data.password, existingUser.password);
+
+    if (!compare) {
+      throw new ClientError('Invalid email or password.', 401);
+    }
+
+    return existingUser;
+  }
+
+
 	async register(input: RegisterInput): Promise<AuthUser> {
 		const existingUser = db
 			.select({ id: users.id })

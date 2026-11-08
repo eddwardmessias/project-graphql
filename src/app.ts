@@ -9,7 +9,7 @@ import fastifyApollo, {
 import { buildSchema } from 'type-graphql';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import routes from './routes/index';
-import { AuthResolver } from './resolvers/auth.resolvers';
+import { AuthResolver } from './resolvers/auth.resolver';
 import { errorHandler } from './shared/errors/app-error';
 import { UserResolver } from './resolvers/user.resolver';
 

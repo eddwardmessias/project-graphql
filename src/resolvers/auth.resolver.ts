@@ -1,7 +1,7 @@
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import type { FastifyReply } from 'fastify';
-import { RegisterInput } from '../dtos/input/auth.input';
-import { RegisterOutput } from '../dtos/output/auth.output';
+import { LoginInput, RegisterInput } from '../dtos/input/auth.input';
+import { LoginOutput, RegisterOutput } from '../dtos/output/auth.output';
 import { AuthService } from '../services/auth.service';
 
 type GraphQLContext = {
@@ -11,6 +11,15 @@ type GraphQLContext = {
 @Resolver()
 export class AuthResolver {
   private readonly authService = new AuthService();
+
+  @Mutation(() => LoginOutput)
+  async login(
+    @Arg('data', () => LoginInput) data: LoginInput,
+    @Ctx() context: GraphQLContext,
+  ): Promise<LoginOutput> {
+    const user = await this.authService.login(data);
+    return this.authService.generateTokens(context.reply, user);
+  }
 
   @Mutation(() => RegisterOutput)
   async register(
