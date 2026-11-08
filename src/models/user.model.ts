@@ -3,15 +3,15 @@ import { Field, GraphQLISODateTime, ID, ObjectType } from "type-graphql";
 @ObjectType()
 export  class UserModel {
   @Field(() => ID)
-  id: string;
+  id!: string;
   @Field(() => String)
-  name: string;
+  name!: string;
+  @Field(() => String, { nullable: true })
+  password?: string;
   @Field(() => String)
-  password: string;
-  @Field(() => String)
-  email: string;
+  email!: string;
   @Field(() => GraphQLISODateTime)
-  createdAt: Date;
+  createdAt!: Date;
   @Field(() => GraphQLISODateTime)
-  updatedAt: Date;
+  updatedAt!: Date;
 }

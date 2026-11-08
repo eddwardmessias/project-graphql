@@ -8,7 +8,7 @@ export const users = sqliteTable('users', {
 
   name: text('name').notNull(),
 
-  password: text('password').notNull(),
+  password: text('password'),
 
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .$defaultFn(() => new Date())
@@ -19,3 +19,5 @@ export const users = sqliteTable('users', {
     .$onUpdateFn(() => new Date())
     .notNull(),
 });
+
+export type User = typeof users.$inferSelect;

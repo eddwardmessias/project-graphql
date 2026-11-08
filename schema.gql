@@ -8,6 +8,16 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTimeISO
 
+type IdeaModel {
+  author: UserModel
+  authorId: String!
+  createdAt: DateTimeISO!
+  description: String
+  id: ID!
+  title: String!
+  updatedAt: DateTimeISO!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -20,6 +30,8 @@ type LoginOutput {
 }
 
 type Mutation {
+  createIdea(data: createIdeaInput!): IdeaModel!
+  createUser(data: createUserInput!): UserModel!
   login(data: LoginInput!): LoginOutput!
   register(data: RegisterInput!): RegisterOutput!
 }
@@ -45,6 +57,16 @@ type UserModel {
   email: String!
   id: ID!
   name: String!
-  password: String!
+  password: String
   updatedAt: DateTimeISO!
+}
+
+input createIdeaInput {
+  description: String
+  title: String!
+}
+
+input createUserInput {
+  email: String!
+  name: String!
 }
