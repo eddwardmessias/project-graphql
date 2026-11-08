@@ -11,10 +11,6 @@ type GraphQLContext = {
 @Resolver()
 export class AuthResolver {
   private readonly authService = new AuthService();
-  @Query(() => String)
-  health(): string {
-    return 'ok';
-  }
 
   @Mutation(() => RegisterOutput)
   async register(

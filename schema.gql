@@ -13,7 +13,7 @@ type Mutation {
 }
 
 type Query {
-  health: String!
+  getUser(id: String!): UserModel!
 }
 
 input RegisterInput {
@@ -33,5 +33,6 @@ type UserModel {
   email: String!
   id: ID!
   name: String!
+  password: String!
   updatedAt: DateTimeISO!
 }

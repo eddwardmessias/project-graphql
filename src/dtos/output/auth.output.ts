@@ -9,7 +9,6 @@ export class RegisterOutput {
   @Field(() => String)
   refreshToken: string;
 
-
   @Field(() => UserModel)
   user: UserModel;
 }

@@ -11,6 +11,7 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import routes from './routes/index';
 import { AuthResolver } from './resolvers/auth.resolvers';
 import { errorHandler } from './shared/errors/app-error';
+import { UserResolver } from './resolvers/user.resolver';
 
 const server = fastify({
   logger: {
@@ -26,7 +27,7 @@ const server = fastify({
 });
 
 const schema = await buildSchema({
-  resolvers: [AuthResolver],
+  resolvers: [AuthResolver,UserResolver],
   validate: false,
   emitSchemaFile: './schema.gql',
 });

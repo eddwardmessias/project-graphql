@@ -11,6 +11,7 @@ export type AuthUser = {
   id: string;
   name: string;
   email: string;
+	password: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -38,6 +39,7 @@ export class AuthService {
 				id: users.id,
 				name: users.name,
 				email: users.email,
+				password: users.password,
 				createdAt: users.createdAt,
 				updatedAt: users.updatedAt,
 			})

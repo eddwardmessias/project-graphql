@@ -7,6 +7,8 @@ export  class UserModel {
   @Field(() => String)
   name: string;
   @Field(() => String)
+  password: string;
+  @Field(() => String)
   email: string;
   @Field(() => GraphQLISODateTime)
   createdAt: Date;
