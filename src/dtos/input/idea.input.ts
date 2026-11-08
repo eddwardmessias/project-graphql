@@ -7,3 +7,11 @@ export class createIdeaInput {
   @Field(() => String, { nullable: true })
   description?: string;
 }
+
+@InputType()
+export class updateIdeaInput {
+  @Field(() => String, { nullable: true })
+  title?: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
+}

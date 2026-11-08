@@ -32,12 +32,15 @@ type LoginOutput {
 type Mutation {
   createIdea(data: createIdeaInput!): IdeaModel!
   createUser(data: createUserInput!): UserModel!
+  deleteIdea(id: String!): Boolean!
   login(data: LoginInput!): LoginOutput!
   register(data: RegisterInput!): RegisterOutput!
+  updateIdea(data: updateIdeaInput!, id: String!): IdeaModel!
 }
 
 type Query {
   getUser(id: String!): UserModel!
+  listIdeas: [IdeaModel!]!
 }
 
 input RegisterInput {
@@ -69,4 +72,9 @@ input createIdeaInput {
 input createUserInput {
   email: String!
   name: String!
+}
+
+input updateIdeaInput {
+  description: String
+  title: String
 }
