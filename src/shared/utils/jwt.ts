@@ -10,4 +10,3 @@ export const signJwt = (
   payload: JwtPayload,
   expiresIn = '1h',
 ) => reply.jwtSign(payload, { expiresIn });
-

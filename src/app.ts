@@ -7,11 +7,11 @@ import fastifyApollo, {
   fastifyApolloDrainPlugin,
 } from '@as-integrations/fastify';
 import { buildSchema } from 'type-graphql';
-import type { FastifyReply, FastifyRequest } from 'fastify';
 import routes from './routes/index';
 import { AuthResolver } from './resolvers/auth.resolver';
 import { errorHandler } from './shared/errors/app-error';
 import { UserResolver } from './resolvers/user.resolver';
+import { buildContext, type GraphQLContext } from './graphql/context';
 
 const server = fastify({
   logger: {
@@ -32,11 +32,6 @@ const schema = await buildSchema({
   emitSchemaFile: './schema.gql',
 });
 
-type GraphQLContext = {
-  request: FastifyRequest;
-  reply: FastifyReply;
-};
-
 const apollo = new ApolloServer<GraphQLContext>({
   schema,
   plugins: [fastifyApolloDrainPlugin(server)],
@@ -55,7 +50,7 @@ await server.register(fastifyJwt, {
 await apollo.start();
 await server.register(fastifyApollo<GraphQLContext>(apollo), {
   path: '/graphql',
-  context: async (request, reply) => ({ request, reply }),
+  context: buildContext,
 });
 
 server.setErrorHandler(errorHandler);
