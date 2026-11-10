@@ -6,7 +6,7 @@ import { users } from './users';
 export const comment = sqliteTable('comments', {
   id: text('id').$defaultFn(() => randomUUID()).primaryKey(),
 
-  content: text('content'),
+  content: text('content').notNull(),
 
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .$defaultFn(() => new Date())

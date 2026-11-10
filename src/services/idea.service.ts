@@ -19,6 +19,10 @@ export class IdeaService {
     return db.select().from(idea).all();
   }
 
+  findIdeaById(id: string) {
+    return db.select().from(idea).where(eq(idea.id, id)).get();
+  }
+
   async deleteIdea(id: string) {
     const findIdea = await db
     .select()
