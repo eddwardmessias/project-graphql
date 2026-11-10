@@ -29,7 +29,7 @@ export class CommentResolver {
       user.id,
       data
     );
-  }
+  } 
 
   @FieldResolver(() => IdeaModel)
   async idea(@Root() comment: CommentModel): Promise<IdeaModel> {

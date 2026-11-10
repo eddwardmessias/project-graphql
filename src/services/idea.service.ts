@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { db } from "../database";
-import { idea } from "../database/schemas";
+import { comment, idea } from "../database/schemas";
 import { createIdeaInput, updateIdeaInput } from "../dtos/input/idea.input";
 
 export class IdeaService {

@@ -21,4 +21,12 @@ export class CommentService {
       ideaId,
     }).returning().get();
   }
+
+  async listCommentsByIdea(ideaId: string) {
+    return db
+      .select()
+      .from(comment)
+      .where(eq(comment.ideaId, ideaId))
+      .all();
+  }
 }

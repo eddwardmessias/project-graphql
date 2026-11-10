@@ -26,11 +26,14 @@ scalar DateTimeISO
 type IdeaModel {
   author: UserModel
   authorId: String!
+  comments: [CommentModel!]
   createdAt: DateTimeISO!
   description: String
   id: ID!
   title: String!
   updatedAt: DateTimeISO!
+  voteCount: Float
+  votes: [VoteModel!]
 }
 
 input LoginInput {
@@ -51,6 +54,7 @@ type Mutation {
   deleteIdea(id: String!): Boolean!
   login(data: LoginInput!): LoginOutput!
   register(data: RegisterInput!): RegisterOutput!
+  toggleVote(ideaId: String!): Boolean!
   updateIdea(data: updateIdeaInput!, id: String!): IdeaModel!
 }
 
@@ -78,6 +82,14 @@ type UserModel {
   name: String!
   password: String
   updatedAt: DateTimeISO!
+}
+
+type VoteModel {
+  id: ID!
+  idea: IdeaModel
+  ideaId: String!
+  user: UserModel
+  userId: ID!
 }
 
 input createIdeaInput {

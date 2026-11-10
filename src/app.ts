@@ -14,6 +14,7 @@ import { UserResolver } from './resolvers/user.resolver';
 import { buildContext, type GraphQLContext } from './graphql/context';
 import { IdeaResolver } from './resolvers/idea.resolver';
 import { CommentResolver } from './resolvers/comment.resolver';
+import { VoteResolver } from './resolvers/vote.resolver';
 
 const server = fastify({
   logger: {
@@ -29,7 +30,7 @@ const server = fastify({
 });
 
 const schema = await buildSchema({
-  resolvers: [AuthResolver,UserResolver,IdeaResolver,CommentResolver],
+  resolvers: [AuthResolver,UserResolver,IdeaResolver,CommentResolver, VoteResolver],
   validate: false,
   emitSchemaFile: './schema.gql',
 });

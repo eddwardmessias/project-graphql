@@ -7,6 +7,10 @@ import { IdeaService } from "../services/idea.service";
 import { GqlUser } from "../graphql/decorators/user.decorator";
 import { isAuth } from "../middlewares/auth.middleware";
 import { UserModel } from "../models/user.model";
+import { CommentModel } from '../models/comment.model';
+import { CommentService } from '../services/comment.service';
+import { VoteModel } from '../models/vote.model';
+import { voteService } from '../services/vote.service';
 
 
 @Resolver(() => IdeaModel)
@@ -14,6 +18,8 @@ import { UserModel } from "../models/user.model";
 export class IdeaResolver {
   private readonly ideaService = new IdeaService();
   private readonly userService = new UserService();
+  private readonly commentService = new CommentService();
+  private readonly voteService = new voteService();
 
   @Mutation(() => IdeaModel)
   async createIdea(
@@ -48,5 +54,20 @@ export class IdeaResolver {
   @FieldResolver(() => UserModel)
   async author(@Root() idea: IdeaModel): Promise<UserModel> {
     return this.userService.findUser(idea.authorId);
+  }
+
+  @FieldResolver(() => [CommentModel])
+  async comments(@Root() idea: IdeaModel): Promise<CommentModel[]> {
+    return this.commentService.listCommentsByIdea(idea.id);
+  }
+
+  @FieldResolver(() => [VoteModel])
+  async votes(@Root() idea: IdeaModel): Promise<VoteModel[]> {
+    return this.voteService.listVotesByIdea(idea.id);
+  }
+
+  @FieldResolver(() => Number, { nullable: true })
+  async voteCount(@Root() idea: IdeaModel): Promise<number> {
+    return this.voteService.countVotes(idea.id);
   }
 }
