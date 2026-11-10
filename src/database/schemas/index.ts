@@ -1,4 +1,11 @@
 export { users } from './users';
 export type { User } from './users';
 export { idea } from './idea';
-export { ideaRelations, userRelations } from './relations';
+export { comment } from './comment';
+export { vote } from './vote';
+export {
+	commentRelations,
+	ideaRelations,
+	userRelations,
+	voteRelations,
+} from './relations';
