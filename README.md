@@ -49,15 +49,15 @@ service aplica a regra de negócio e o Drizzle consulta ou altera o SQLite.
 
 ```mermaid
 flowchart LR
-    C[Cliente GraphQL] -->|query ou mutation| A[/graphql]
-    A --> AP[Apollo Server]
-    AP --> TG[TypeGraphQL]
-    TG --> R[Resolver]
-    R --> M{Middleware JWT}
-    M --> S[Service]
-    S --> D[Drizzle ORM]
-    D --> DB[(SQLite)]
-    R -->|FieldResolver: author, comments, votes| S
+    C["Cliente GraphQL"] -->|"query ou mutation"| A["/graphql"]
+    A --> AP["Apollo Server"]
+    AP --> TG["TypeGraphQL"]
+    TG --> R["Resolver"]
+    R --> M{"Middleware JWT"}
+    M --> S["Service"]
+    S --> D["Drizzle ORM"]
+    D --> DB[("SQLite")]
+    R -->|"FieldResolver: author, comments, votes"| S
     S --> DB
 ```
 
